@@ -36,7 +36,7 @@ class _SignupPageState extends State<SignupPage> {
           children: [
             Padding(
               padding: EdgeInsets.only(top: height * 0.08),
-              child: Image.asset("assets/images/marvel_logo_1.png"),
+              child: Image.asset("assets/images/marvel_logo_4.png", width: 188.23, height: 85.19,),
             ),
             Padding(
               padding: EdgeInsets.only(left: 30, right: 30, top: height * 0.07),
