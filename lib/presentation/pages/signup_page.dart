@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marvel_app/presentation/pages/home_page.dart';
 import 'package:marvel_app/presentation/pages/login_page.dart';
+import 'package:marvel_app/presentation/pages/profile_page.dart';
 import 'package:marvel_app/presentation/states/login_state/login_bloc.dart';
 
 class SignupPage extends StatefulWidget {
@@ -148,7 +149,7 @@ class _SignupPageState extends State<SignupPage> {
                             shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.all(Radius.zero))),
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
                         },
                         child: const Text(
                           "Signup",
