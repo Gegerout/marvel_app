@@ -10,3 +10,7 @@ class AvatarSelectedState extends ProfileState {
 
   AvatarSelectedState(this.index);
 }
+
+class UserNameSetState extends ProfileState {}
+
+class UserNameWrongState extends ProfileState {}

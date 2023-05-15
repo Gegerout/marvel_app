@@ -15,7 +15,6 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   late bool _passwordVisible;
   TextEditingController emailCont = TextEditingController();
-
   TextEditingController passwordCont = TextEditingController();
 
   @override

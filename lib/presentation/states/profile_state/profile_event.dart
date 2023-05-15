@@ -8,3 +8,9 @@ class GetAvatarEvent extends ProfileEvent {
 
   GetAvatarEvent(this.index);
 }
+
+class GetUserNameEvent extends ProfileEvent {
+  final String userName;
+
+  GetUserNameEvent(this.userName);
+}
