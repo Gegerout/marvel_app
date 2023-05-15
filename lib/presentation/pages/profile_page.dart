@@ -200,18 +200,26 @@ class UserNamePage extends StatelessWidget {
                         width: 120,
                         height: 120,
                       )),
-                      const Align(
+                      Align(
                         alignment: Alignment.bottomRight,
                         child: Padding(
-                          padding: EdgeInsets.only(right: 25),
-                          child: Text(
+                          padding: const EdgeInsets.only(right: 25),
+                          child: TextButton(
+                              style: TextButton.styleFrom(
+                                  padding: EdgeInsets.zero,
+                                  minimumSize: Size(50, 30),
+                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  alignment: Alignment.centerLeft),
+                              onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
+                          }, child: const Text(
                             "Change",
                             style: TextStyle(
                                 fontFamily: "Inter",
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
                                 color: Color(0xFFED1B24)),
-                          ),
+                          )),
                         ),
                       ),
                     ],
