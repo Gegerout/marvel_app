@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:marvel_app/data/repositories/data_repository.dart';
-import 'package:meta/meta.dart';
 
 import '../../../domain/usecases/onboarding_data_usecase.dart';
 
@@ -17,7 +16,7 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
       emit(OnboardingDataLoaded(data));
     });
     on<SaveOnboardingShowedEvent>((event, emit) async {
-      
+      await DataRepository().saveOnboardingShowed();
     });
   }
 }

@@ -164,7 +164,8 @@ class OnboardingPage extends StatelessWidget {
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.zero))),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SignupPage()));
+                      context.read<OnboardingBloc>().add(SaveOnboardingShowedEvent());
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const SignupPage()));
                     },
                     child: const Text(
                       "Signup",
@@ -189,7 +190,8 @@ class OnboardingPage extends StatelessWidget {
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.zero))),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                      context.read<OnboardingBloc>().add(SaveOnboardingShowedEvent());
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
                     },
                     child: const Text(
                       "Login",
