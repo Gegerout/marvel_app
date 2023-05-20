@@ -16,5 +16,8 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
       final data = await DataRepository().getOnboardingData();
       emit(OnboardingDataLoaded(data));
     });
+    on<SaveOnboardingShowedEvent>((event, emit) async {
+      
+    });
   }
 }
