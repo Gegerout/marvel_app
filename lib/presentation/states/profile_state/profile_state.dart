@@ -14,3 +14,11 @@ class AvatarSelectedState extends ProfileState {
 class UserNameSetState extends ProfileState {}
 
 class UserNameWrongState extends ProfileState {}
+
+class PasswordSetState extends ProfileState {}
+
+class PasswordWrongState extends ProfileState {}
+
+class PinCodeSetState extends ProfileState {}
+
+class PinCodeWrongState extends ProfileState {}

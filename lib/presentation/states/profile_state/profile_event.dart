@@ -14,3 +14,15 @@ class GetUserNameEvent extends ProfileEvent {
 
   GetUserNameEvent(this.userName);
 }
+
+class GetPasswordEvent extends ProfileEvent {
+  final String password;
+
+  GetPasswordEvent(this.password);
+}
+
+class GetPinCodeEvent extends ProfileEvent {
+  final String pincode;
+
+  GetPinCodeEvent(this.pincode);
+}

@@ -19,5 +19,21 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         emit(UserNameWrongState());
       }
     });
+    on<GetPasswordEvent>((event, emit) {
+      if(event.password.length > 7) {
+        emit(PasswordSetState());
+      }
+      else {
+        emit(PasswordWrongState());
+      }
+    });
+    on<GetPinCodeEvent>((event, emit) {
+      if(event.pincode.length == 4) {
+        emit(PinCodeSetState());
+      }
+      else {
+        emit(PinCodeWrongState());
+      }
+    });
   }
 }

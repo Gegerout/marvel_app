@@ -1,10 +1,10 @@
 part of 'main_bloc.dart';
 
-@immutable
-abstract class MainState {}
+class MainState {
+  bool onboardingShowed;
+  UserDataUseCase? userData;
+
+  MainState({this.onboardingShowed = false, this.userData});
+}
 
 class MainInitial extends MainState {}
-
-class OnboardingShowedState extends MainState {}
-
-class UserLoggedInState extends MainState {}

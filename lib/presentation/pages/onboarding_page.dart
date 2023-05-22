@@ -96,7 +96,9 @@ class OnboardingPage extends StatelessWidget {
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w600,
                         fontSize: 20,
-                        height: 1.3),
+                        height: 1.3,
+                      color: Colors.white
+                    ),
                   )),
             ),
             Padding(

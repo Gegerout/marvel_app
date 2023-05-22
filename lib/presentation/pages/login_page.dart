@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marvel_app/presentation/pages/signup_page.dart';
 
 import '../states/login_state/login_bloc.dart';
 import 'home_page.dart';
@@ -253,7 +254,7 @@ class _LoginPageState extends State<LoginPage> {
                     width: 66,
                     child: TextButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const SignupPage()));
                         },
                         child: const Text("Signup",
                             style: TextStyle(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marvel_app/presentation/states/profile_state/profile_bloc.dart';
 
@@ -207,7 +208,7 @@ class UserNamePage extends StatelessWidget {
                           child: TextButton(
                               style: TextButton.styleFrom(
                                   padding: EdgeInsets.zero,
-                                  minimumSize: Size(50, 30),
+                                  minimumSize: const Size(50, 30),
                                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                   alignment: Alignment.centerLeft),
                               onPressed: () {
@@ -300,7 +301,9 @@ class UserNamePage extends StatelessWidget {
                               backgroundColor: const Color(0xFFED1B24),
                               shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(Radius.zero))),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => ChoosePasswordPage(avatarIndex: avatarIndex, userName: usernameCont.text,)));
+                          },
                           child: const Text(
                             "Call me this",
                             style: TextStyle(
@@ -329,6 +332,490 @@ class UserNamePage extends StatelessWidget {
                         onPressed: null,
                         child: const Text(
                           "Call me this",
+                          style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18),
+                        )),
+                  ),
+                );
+              })
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ChoosePasswordPage extends StatelessWidget {
+  ChoosePasswordPage({Key? key, required this.avatarIndex, required this.userName}) : super(key: key);
+
+  final int avatarIndex;
+  final String userName;
+
+  final TextEditingController passwordCont = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.black,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 30, right: 30),
+          child: Column(
+            children: [
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 4),
+                  child: Image.asset(
+                    "assets/images/marvel_logo_4.png",
+                    width: 150,
+                    height: 67.89,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: height * 0.03),
+                child: const Text(
+                  "Choose a password",
+                  style: TextStyle(
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w800,
+                      fontSize: 24),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 48),
+                child: IntrinsicHeight(
+                  child: Stack(
+                    children: [
+                      Align(
+                          child: Image.asset(
+                            "assets/images/avatar ($avatarIndex).png",
+                            width: 120,
+                            height: 120,
+                          )),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 25),
+                          child: TextButton(
+                              style: TextButton.styleFrom(
+                                  padding: EdgeInsets.zero,
+                                  minimumSize: const Size(50, 30),
+                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  alignment: Alignment.centerLeft),
+                              onPressed: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
+                              }, child: const Text(
+                            "Change",
+                            style: TextStyle(
+                                fontFamily: "Inter",
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xFFED1B24)),
+                          )),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: Text(userName, style: const TextStyle(fontFamily: "Inter", fontWeight: FontWeight.w800, fontSize: 18),),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: height * 0.03, left: 25, right: 25),
+                child: SizedBox(
+                  height: 55,
+                  child: TextFormField(
+                    textAlignVertical: TextAlignVertical.center,
+                    onChanged: (value) {
+                      context.read<ProfileBloc>().add(GetPasswordEvent(value));
+                    },
+                    controller: passwordCont,
+                    cursorColor: Colors.white,
+                    cursorHeight: 20,
+                    style: const TextStyle(
+                        fontSize: 18,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white),
+                    decoration: InputDecoration(
+                      hintText: "Create a password",
+                      hintStyle: TextStyle(
+                          fontSize: 18,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white.withOpacity(0.3)),
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.2),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(0),
+                        borderSide: const BorderSide(width: 0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(0),
+                        borderSide: const BorderSide(
+                          width: 0,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              BlocBuilder<ProfileBloc, ProfileState>(
+                builder: (context, state) {
+                  if(state is PasswordSetState) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 8, left: 25, right: 25),
+                      child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text("Minimum 8 characters\nOnly A-Z, a-z, 0-9\n1 special charcter (. , _ - / &)",
+                              style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w800,
+                                  color: const Color(0xFF0E9B02).withOpacity(0.8)
+                              )
+                          )
+                      ),
+                    );
+                  }
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 8, left: 25, right: 25),
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Minimum 8 characters\nOnly A-Z, a-z, 0-9\n1 special charcter (. , _ - / &)",
+                            style: TextStyle(
+                                fontFamily: "Inter",
+                                fontSize: 14,
+                                fontWeight: FontWeight.w800,
+                                color: Colors.white.withOpacity(0.3)
+                            )
+                        )
+                    ),
+                  );
+                },
+              ),
+              const Spacer(),
+              BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
+                if (state is PasswordSetState) {
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: height * 0.04),
+                    child: SizedBox(
+                      height: 55,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFED1B24),
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.zero))),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => PinCodePage(avatarIndex: avatarIndex,)));
+                          },
+                          child: const Text(
+                            "Looks strong",
+                            style: TextStyle(
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18),
+                          )),
+                    ),
+                  );
+                }
+                return Padding(
+                  padding:
+                  EdgeInsets.only(bottom: height * 0.04),
+                  child: Container(
+                    height: 55,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        border:
+                        Border.all(color: const Color(0xFFED1B24), width: 3)),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            disabledForegroundColor: Colors.white,
+                            disabledBackgroundColor: Colors.black,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(Radius.zero))),
+                        onPressed: null,
+                        child: const Text(
+                          "Looks strong",
+                          style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18),
+                        )),
+                  ),
+                );
+              })
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class PinCodePage extends StatelessWidget {
+  const PinCodePage({Key? key, required this.avatarIndex}) : super(key: key);
+
+  final int avatarIndex;
+
+  @override
+  Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+
+    String? code = "";
+    String? opt1 = "";
+    String? opt2 = "";
+    String? opt3 = "";
+    String? opt4 = "";
+
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.black,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 30, right: 30),
+          child: Column(
+            children: [
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 4),
+                  child: Image.asset(
+                    "assets/images/marvel_logo_4.png",
+                    width: 150,
+                    height: 67.89,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: height * 0.03),
+                child: const Text(
+                  "Create a pin",
+                  style: TextStyle(
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w800,
+                      fontSize: 24),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 48),
+                child: Image.asset(
+                  "assets/images/avatar ($avatarIndex).png",
+                  width: 120,
+                  height: 120,
+                )
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 34, right: 34, top: height * 0.07),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      width: 40,
+                      child: TextFormField(
+                        onChanged: (value) {
+                          if(value.length == 1) {
+                            FocusScope.of(context).nextFocus();
+                          }
+                        },
+                        onSaved: (value) {
+                          opt1 = value;
+                        },
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.zero,
+                          filled: true,
+                          fillColor: Colors.white.withOpacity(0.2),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide.none
+                          )
+                        ),
+                        style: const TextStyle(
+                          fontFamily: "Inter",
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white
+                        ),
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 50,
+                      width: 40,
+                      child: TextFormField(
+                        onChanged: (value) {
+                          if(value.length == 1) {
+                            FocusScope.of(context).nextFocus();
+                          }
+                        },
+                        onSaved: (value) {
+                          opt2 = value;
+                        },
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.zero,
+                            filled: true,
+                            fillColor: Colors.white.withOpacity(0.2),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide.none
+                            )
+                        ),
+                        style: const TextStyle(
+                            fontFamily: "Inter",
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white
+                        ),
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 50,
+                      width: 40,
+                      child: TextFormField(
+                        onChanged: (value) {
+                          if(value.length == 1) {
+                            FocusScope.of(context).nextFocus();
+                          }
+                        },
+                        onSaved: (value) {
+                          opt3 = value;
+                        },
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.zero,
+                            filled: true,
+                            fillColor: Colors.white.withOpacity(0.2),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide.none
+                            )
+                        ),
+                        style: const TextStyle(
+                            fontFamily: "Inter",
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white
+                        ),
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 50,
+                      width: 40,
+                      child: TextFormField(
+                        onChanged: (value) {
+                          if(value.length == 1) {
+                            FocusScope.of(context).nextFocus();
+                          }
+                        },
+                        onSaved: (value) {
+                          opt4 = value;
+                          code = opt1! + opt2! + opt3! + opt4!;
+                        },
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.zero,
+                            filled: true,
+                            fillColor: Colors.white.withOpacity(0.2),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide.none
+                            )
+                        ),
+                        style: const TextStyle(
+                            fontFamily: "Inter",
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white
+                        ),
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: height * 0.03),
+                child: Text("This pin will be used to \nlog-in to your profile", style: TextStyle(
+                    fontFamily: "Inter",
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                    color: Colors.white.withOpacity(0.5)
+                ), textAlign: TextAlign.center,),
+              ),
+              const Spacer(),
+              BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
+                if (state is PinCodeSetState) {
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: height * 0.04),
+                    child: SizedBox(
+                      height: 55,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFED1B24),
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.zero))),
+                          onPressed: () {
+                            //Navigator.push(context, MaterialPageRoute(builder: (context) => PinCodePage(avatarIndex: avatarIndex,)));
+                          },
+                          child: const Text(
+                            "I’m all safe now",
+                            style: TextStyle(
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18),
+                          )),
+                    ),
+                  );
+                }
+                return Padding(
+                  padding:
+                  EdgeInsets.only(bottom: height * 0.04),
+                  child: Container(
+                    height: 55,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        border:
+                        Border.all(color: const Color(0xFFED1B24), width: 3)),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            disabledForegroundColor: Colors.white,
+                            disabledBackgroundColor: Colors.black,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(Radius.zero))),
+                        onPressed: null,
+                        child: const Text(
+                          "I’m all safe now",
                           style: TextStyle(
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w600,
