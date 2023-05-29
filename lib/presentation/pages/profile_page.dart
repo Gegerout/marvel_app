@@ -209,18 +209,24 @@ class UserNamePage extends StatelessWidget {
                               style: TextButton.styleFrom(
                                   padding: EdgeInsets.zero,
                                   minimumSize: const Size(50, 30),
-                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  tapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
                                   alignment: Alignment.centerLeft),
                               onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
-                          }, child: const Text(
-                            "Change",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFFED1B24)),
-                          )),
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ProfilePage()));
+                              },
+                              child: const Text(
+                                "Change",
+                                style: TextStyle(
+                                    fontFamily: "Inter",
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xFFED1B24)),
+                              )),
                         ),
                       ),
                     ],
@@ -228,7 +234,8 @@ class UserNamePage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: height * 0.03, left: 25, right: 25),
+                padding:
+                    EdgeInsets.only(top: height * 0.03, left: 25, right: 25),
                 child: SizedBox(
                   height: 55,
                   child: TextFormField(
@@ -269,9 +276,10 @@ class UserNamePage extends StatelessWidget {
               ),
               BlocBuilder<ProfileBloc, ProfileState>(
                 builder: (context, state) {
-                  if(state is UserNameSetState) {
+                  if (state is UserNameSetState) {
                     return Padding(
-                      padding: const EdgeInsets.only(top: 4, left: 25, right: 25),
+                      padding:
+                          const EdgeInsets.only(top: 4, left: 25, right: 25),
                       child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text("Username is available",
@@ -279,10 +287,8 @@ class UserNamePage extends StatelessWidget {
                                   fontFamily: "Inter",
                                   fontSize: 12,
                                   fontWeight: FontWeight.w800,
-                                  color: const Color(0xFF0E9B02).withOpacity(0.8)
-                              )
-                          )
-                      ),
+                                  color: const Color(0xFF0E9B02)
+                                      .withOpacity(0.8)))),
                     );
                   }
                   return Container();
@@ -302,7 +308,13 @@ class UserNamePage extends StatelessWidget {
                               shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(Radius.zero))),
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => ChoosePasswordPage(avatarIndex: avatarIndex, userName: usernameCont.text,)));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ChoosePasswordPage(
+                                          avatarIndex: avatarIndex,
+                                          userName: usernameCont.text,
+                                        )));
                           },
                           child: const Text(
                             "Call me this",
@@ -315,14 +327,13 @@ class UserNamePage extends StatelessWidget {
                   );
                 }
                 return Padding(
-                  padding:
-                  EdgeInsets.only(bottom: height * 0.04),
+                  padding: EdgeInsets.only(bottom: height * 0.04),
                   child: Container(
                     height: 55,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                        border:
-                        Border.all(color: const Color(0xFFED1B24), width: 3)),
+                        border: Border.all(
+                            color: const Color(0xFFED1B24), width: 3)),
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             disabledForegroundColor: Colors.white,
@@ -349,7 +360,9 @@ class UserNamePage extends StatelessWidget {
 }
 
 class ChoosePasswordPage extends StatelessWidget {
-  ChoosePasswordPage({Key? key, required this.avatarIndex, required this.userName}) : super(key: key);
+  ChoosePasswordPage(
+      {Key? key, required this.avatarIndex, required this.userName})
+      : super(key: key);
 
   final int avatarIndex;
   final String userName;
@@ -395,10 +408,10 @@ class ChoosePasswordPage extends StatelessWidget {
                     children: [
                       Align(
                           child: Image.asset(
-                            "assets/images/avatar ($avatarIndex).png",
-                            width: 120,
-                            height: 120,
-                          )),
+                        "assets/images/avatar ($avatarIndex).png",
+                        width: 120,
+                        height: 120,
+                      )),
                       Align(
                         alignment: Alignment.bottomRight,
                         child: Padding(
@@ -407,18 +420,24 @@ class ChoosePasswordPage extends StatelessWidget {
                               style: TextButton.styleFrom(
                                   padding: EdgeInsets.zero,
                                   minimumSize: const Size(50, 30),
-                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  tapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
                                   alignment: Alignment.centerLeft),
                               onPressed: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
-                              }, child: const Text(
-                            "Change",
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFFED1B24)),
-                          )),
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ProfilePage()));
+                              },
+                              child: const Text(
+                                "Change",
+                                style: TextStyle(
+                                    fontFamily: "Inter",
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xFFED1B24)),
+                              )),
                         ),
                       ),
                     ],
@@ -427,13 +446,21 @@ class ChoosePasswordPage extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 12),
-                child: Text(userName, style: const TextStyle(fontFamily: "Inter", fontWeight: FontWeight.w800, fontSize: 18),),
+                child: Text(
+                  userName,
+                  style: const TextStyle(
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w800,
+                      fontSize: 18),
+                ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: height * 0.03, left: 25, right: 25),
+                padding:
+                    EdgeInsets.only(top: height * 0.03, left: 25, right: 25),
                 child: SizedBox(
                   height: 55,
                   child: TextFormField(
+                    obscureText: true,
                     textAlignVertical: TextAlignVertical.center,
                     onChanged: (value) {
                       context.read<ProfileBloc>().add(GetPasswordEvent(value));
@@ -471,35 +498,33 @@ class ChoosePasswordPage extends StatelessWidget {
               ),
               BlocBuilder<ProfileBloc, ProfileState>(
                 builder: (context, state) {
-                  if(state is PasswordSetState) {
+                  if (state is PasswordSetState) {
                     return Padding(
-                      padding: const EdgeInsets.only(top: 8, left: 25, right: 25),
+                      padding:
+                          const EdgeInsets.only(top: 8, left: 25, right: 25),
                       child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Text("Minimum 8 characters\nOnly A-Z, a-z, 0-9\n1 special charcter (. , _ - / &)",
+                          child: Text(
+                              "Minimum 8 characters\nOnly A-Z, a-z, 0-9\n1 special charcter (. , _ - / &)",
                               style: TextStyle(
                                   fontFamily: "Inter",
                                   fontSize: 14,
                                   fontWeight: FontWeight.w800,
-                                  color: const Color(0xFF0E9B02).withOpacity(0.8)
-                              )
-                          )
-                      ),
+                                  color: const Color(0xFF0E9B02)
+                                      .withOpacity(0.8)))),
                     );
                   }
                   return Padding(
                     padding: const EdgeInsets.only(top: 8, left: 25, right: 25),
                     child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text("Minimum 8 characters\nOnly A-Z, a-z, 0-9\n1 special charcter (. , _ - / &)",
+                        child: Text(
+                            "Minimum 8 characters\nOnly A-Z, a-z, 0-9\n1 special charcter (. , _ - / &)",
                             style: TextStyle(
                                 fontFamily: "Inter",
                                 fontSize: 14,
                                 fontWeight: FontWeight.w800,
-                                color: Colors.white.withOpacity(0.3)
-                            )
-                        )
-                    ),
+                                color: Colors.white.withOpacity(0.3)))),
                   );
                 },
               ),
@@ -517,7 +542,12 @@ class ChoosePasswordPage extends StatelessWidget {
                               shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(Radius.zero))),
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => PinCodePage(avatarIndex: avatarIndex,)));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PinCodePage(
+                                          avatarIndex: avatarIndex, userName: userName,
+                                        )));
                           },
                           child: const Text(
                             "Looks strong",
@@ -530,14 +560,13 @@ class ChoosePasswordPage extends StatelessWidget {
                   );
                 }
                 return Padding(
-                  padding:
-                  EdgeInsets.only(bottom: height * 0.04),
+                  padding: EdgeInsets.only(bottom: height * 0.04),
                   child: Container(
                     height: 55,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                        border:
-                        Border.all(color: const Color(0xFFED1B24), width: 3)),
+                        border: Border.all(
+                            color: const Color(0xFFED1B24), width: 3)),
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             disabledForegroundColor: Colors.white,
@@ -564,19 +593,20 @@ class ChoosePasswordPage extends StatelessWidget {
 }
 
 class PinCodePage extends StatelessWidget {
-  const PinCodePage({Key? key, required this.avatarIndex}) : super(key: key);
+  PinCodePage({Key? key, required this.avatarIndex, required this.userName}) : super(key: key);
 
   final int avatarIndex;
+  final String userName;
+  TextEditingController opt1 = TextEditingController();
+  TextEditingController opt2 = TextEditingController();
+  TextEditingController opt3 = TextEditingController();
+  TextEditingController opt4 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
 
     String? code = "";
-    String? opt1 = "";
-    String? opt2 = "";
-    String? opt3 = "";
-    String? opt4 = "";
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -607,15 +637,15 @@ class PinCodePage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 48),
-                child: Image.asset(
-                  "assets/images/avatar ($avatarIndex).png",
-                  width: 120,
-                  height: 120,
-                )
-              ),
+                  padding: const EdgeInsets.only(top: 48),
+                  child: Image.asset(
+                    "assets/images/avatar ($avatarIndex).png",
+                    width: 120,
+                    height: 120,
+                  )),
               Padding(
-                padding: EdgeInsets.only(left: 34, right: 34, top: height * 0.07),
+                padding:
+                    EdgeInsets.only(left: 34, right: 34, top: height * 0.07),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -624,28 +654,27 @@ class PinCodePage extends StatelessWidget {
                       width: 40,
                       child: TextFormField(
                         onChanged: (value) {
-                          if(value.length == 1) {
+                          if (value.length == 1) {
                             FocusScope.of(context).nextFocus();
                           }
+                          code = value + opt2.text + opt3.text + opt4.text;
+                          context
+                              .read<ProfileBloc>()
+                              .add(GetPinCodeEvent(code!));
                         },
-                        onSaved: (value) {
-                          opt1 = value;
-                        },
+                        controller: opt1,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.zero,
-                          filled: true,
-                          fillColor: Colors.white.withOpacity(0.2),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide.none
-                          )
-                        ),
+                            contentPadding: EdgeInsets.zero,
+                            filled: true,
+                            fillColor: Colors.white.withOpacity(0.2),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide.none)),
                         style: const TextStyle(
-                          fontFamily: "Inter",
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white
-                        ),
+                            fontFamily: "Inter",
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
                         keyboardType: TextInputType.number,
                         textAlign: TextAlign.center,
                         inputFormatters: [
@@ -659,28 +688,27 @@ class PinCodePage extends StatelessWidget {
                       width: 40,
                       child: TextFormField(
                         onChanged: (value) {
-                          if(value.length == 1) {
+                          if (value.length == 1) {
                             FocusScope.of(context).nextFocus();
                           }
+                          code = opt1.text + value + opt3.text + opt4.text;
+                          context
+                              .read<ProfileBloc>()
+                              .add(GetPinCodeEvent(code!));
                         },
-                        onSaved: (value) {
-                          opt2 = value;
-                        },
+                        controller: opt2,
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.zero,
                             filled: true,
                             fillColor: Colors.white.withOpacity(0.2),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
-                                borderSide: BorderSide.none
-                            )
-                        ),
+                                borderSide: BorderSide.none)),
                         style: const TextStyle(
                             fontFamily: "Inter",
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
-                            color: Colors.white
-                        ),
+                            color: Colors.white),
                         keyboardType: TextInputType.number,
                         textAlign: TextAlign.center,
                         inputFormatters: [
@@ -694,28 +722,27 @@ class PinCodePage extends StatelessWidget {
                       width: 40,
                       child: TextFormField(
                         onChanged: (value) {
-                          if(value.length == 1) {
+                          if (value.length == 1) {
                             FocusScope.of(context).nextFocus();
                           }
+                          code = opt1.text + opt2.text + value + opt4.text;
+                          context
+                              .read<ProfileBloc>()
+                              .add(GetPinCodeEvent(code!));
                         },
-                        onSaved: (value) {
-                          opt3 = value;
-                        },
+                        controller: opt3,
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.zero,
                             filled: true,
                             fillColor: Colors.white.withOpacity(0.2),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
-                                borderSide: BorderSide.none
-                            )
-                        ),
+                                borderSide: BorderSide.none)),
                         style: const TextStyle(
                             fontFamily: "Inter",
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
-                            color: Colors.white
-                        ),
+                            color: Colors.white),
                         keyboardType: TextInputType.number,
                         textAlign: TextAlign.center,
                         inputFormatters: [
@@ -729,29 +756,24 @@ class PinCodePage extends StatelessWidget {
                       width: 40,
                       child: TextFormField(
                         onChanged: (value) {
-                          if(value.length == 1) {
-                            FocusScope.of(context).nextFocus();
-                          }
+                          code = opt1.text + opt2.text + opt3.text + value;
+                          context
+                              .read<ProfileBloc>()
+                              .add(GetPinCodeEvent(code!));
                         },
-                        onSaved: (value) {
-                          opt4 = value;
-                          code = opt1! + opt2! + opt3! + opt4!;
-                        },
+                        controller: opt4,
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.zero,
                             filled: true,
                             fillColor: Colors.white.withOpacity(0.2),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
-                                borderSide: BorderSide.none
-                            )
-                        ),
+                                borderSide: BorderSide.none)),
                         style: const TextStyle(
                             fontFamily: "Inter",
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
-                            color: Colors.white
-                        ),
+                            color: Colors.white),
                         keyboardType: TextInputType.number,
                         textAlign: TextAlign.center,
                         inputFormatters: [
@@ -765,12 +787,15 @@ class PinCodePage extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(top: height * 0.03),
-                child: Text("This pin will be used to \nlog-in to your profile", style: TextStyle(
-                    fontFamily: "Inter",
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
-                    color: Colors.white.withOpacity(0.5)
-                ), textAlign: TextAlign.center,),
+                child: Text(
+                  "This pin will be used to \nlog-in to your profile",
+                  style: TextStyle(
+                      fontFamily: "Inter",
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.white.withOpacity(0.5)),
+                  textAlign: TextAlign.center,
+                ),
               ),
               const Spacer(),
               BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
@@ -786,7 +811,11 @@ class PinCodePage extends StatelessWidget {
                               shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(Radius.zero))),
                           onPressed: () {
-                            //Navigator.push(context, MaterialPageRoute(builder: (context) => PinCodePage(avatarIndex: avatarIndex,)));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProfileSuccessPage(
+                                        avatarIndex: avatarIndex, userName: userName,)));
                           },
                           child: const Text(
                             "I’m all safe now",
@@ -799,14 +828,13 @@ class PinCodePage extends StatelessWidget {
                   );
                 }
                 return Padding(
-                  padding:
-                  EdgeInsets.only(bottom: height * 0.04),
+                  padding: EdgeInsets.only(bottom: height * 0.04),
                   child: Container(
                     height: 55,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                        border:
-                        Border.all(color: const Color(0xFFED1B24), width: 3)),
+                        border: Border.all(
+                            color: const Color(0xFFED1B24), width: 3)),
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             disabledForegroundColor: Colors.white,
@@ -824,6 +852,103 @@ class PinCodePage extends StatelessWidget {
                   ),
                 );
               })
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ProfileSuccessPage extends StatelessWidget {
+  const ProfileSuccessPage({Key? key, required this.avatarIndex, required this.userName})
+      : super(key: key);
+
+  final int avatarIndex;
+  final String userName;
+
+  @override
+  Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 30, right: 30, top: 6),
+          child: Column(
+            children: [
+              Center(
+                  child: Image.asset(
+                "assets/images/marvel_logo_4.png",
+                width: 150,
+                height: 67.89,
+              )),
+              Padding(
+                padding: EdgeInsets.only(top: height * 0.03),
+                child: const Text("Your Profile is Created\nSuccessfully!!",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.w800,
+                    fontSize: 24),),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: height * 0.08),
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                        child: Image.asset("assets/images/avatar_circle.png", width: 260, height: 260,)
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 30),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Image.asset(
+                          "assets/images/avatar ($avatarIndex).png",
+                          width: 200,
+                          height: 200,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: height * 0.04),
+                child: Text(userName, style: const TextStyle(
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.w800,
+                    fontSize: 20),),
+              ),
+              const Spacer(),
+        Padding(
+          padding: EdgeInsets.only(bottom: height * 0.04),
+          child: SizedBox(
+            height: 55,
+            width: double.infinity,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFED1B24),
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.zero))),
+                onPressed: () {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => ProfileSuccessPage(
+                  //           avatarIndex: avatarIndex, userName: userName,)));
+                },
+                child: const Text(
+                  "Eat Your Green Vegetables",
+                  style: TextStyle(
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18),
+                )),
+          ),
+        )
             ],
           ),
         ),

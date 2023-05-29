@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marvel_app/presentation/pages/home_page.dart';
 import 'package:marvel_app/presentation/pages/login_page.dart';
 import 'package:marvel_app/presentation/pages/onboarding_page.dart';
-import 'package:marvel_app/presentation/pages/profile_page.dart';
 import 'package:marvel_app/presentation/states/login_state/login_bloc.dart';
 import 'package:marvel_app/presentation/states/main_state/main_bloc.dart';
 import 'package:marvel_app/presentation/states/onboarding_state/onboarding_bloc.dart';
